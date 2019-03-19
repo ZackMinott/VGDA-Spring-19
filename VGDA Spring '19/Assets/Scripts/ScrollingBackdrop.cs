@@ -43,6 +43,7 @@ public class ScrollingBackdrop : MonoBehaviour
             }
             gameObject.GetComponent<SpriteRenderer>().sprite = backgroundImages[listLocation];
             timesPassed = 0;
+            sizeX = gameObject.GetComponent<SpriteRenderer>().sprite.bounds.size.x;
         }
         if (transform.position.x <= ((sizeX * transform.localScale.x / 2 + cameraBound) * -1 + (speed / 30)))
         {
