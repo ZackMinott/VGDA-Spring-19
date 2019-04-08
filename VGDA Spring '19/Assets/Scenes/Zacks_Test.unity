@@ -744,5 +744,15 @@ PrefabInstance:
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 181074489}
+    - target: {fileID: 8236992609463220077, guid: 397b6f960626fec429886b4b1ac698e6,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236992609463220074, guid: 397b6f960626fec429886b4b1ac698e6,
+        type: 3}
+      propertyPath: upForce
+      value: 450
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 397b6f960626fec429886b4b1ac698e6, type: 3}

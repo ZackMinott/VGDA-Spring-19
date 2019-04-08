@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8236992609463220074}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,3 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upForce: 325
   smashForce: 2500
+  dashSpeed: 3
+  dashDuration: 0.4
