@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8236992609463220078}
   - component: {fileID: 8236992609463220073}
   - component: {fileID: 8236992609463220077}
-  - component: {fileID: 8236992609463220075}
   - component: {fileID: 8236992609463220074}
   m_Layer: 0
   m_Name: Player
@@ -112,28 +111,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &8236992609463220075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8236992609463220076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2067d13d4807e744eb5274b7a6d045a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shakeDuration: 0.3
-  shakeAmplitude: 1.2
-  shakeFrequency: 2
-  virtualCamera: {fileID: 0}
 --- !u!114 &8236992609463220074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be254e389023ad04fa3ec4833da08f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upForce: 325
+  upForce: 450
   smashForce: 2500
   dashSpeed: 3
   dashDuration: 0.4
+  magnitude: 4
+  roughness: 2
+  fadeInTime: 0.1
+  fadeOutTime: 1
+  canDie: 1

@@ -6,53 +6,25 @@ using UnityEngine.Events;
 
 public class CameraShake : MonoBehaviour
 {
-    [SerializeField] private float shakeDuration = 0.3f;  //Time the camera shake effect will last
-    [SerializeField] private float shakeAmplitude = 1.2f;
-    [SerializeField] private float shakeFrequency = 2.0f;
 
-    private float shakeElapsedTime = 0f;
-
-    public CinemachineVirtualCamera virtualCamera;
-    private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
-
-    // Start is called before the first frame update
-    void Start()
+    public IEnumerator Shake(float duration, float magnitude)
     {
-        if (virtualCamera != null)
-            virtualCameraNoise =
-                virtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
-    }
+        Vector3 originalPosition = transform.localPosition;
 
-    void Update()
-    {
-        ShakeCamera();
-    }
+        float elapsed = 0.0f;
 
-    void ShakeCamera()
-    {
-        if (virtualCamera != null && virtualCameraNoise != null)
+        while (elapsed < duration)
         {
-            //if Camera shake effect is still playing
-            if (shakeElapsedTime > 0)
-            {
-                //Set Cinemachine Camera Noise parameters
-                virtualCameraNoise.m_AmplitudeGain = shakeAmplitude;
-                virtualCameraNoise.m_FrequencyGain = shakeFrequency;
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
 
-                //Update Shake Timer
-                shakeElapsedTime -= Time.deltaTime;
-            }
-            else
-            {
-                //If camera shake effect is over, reset
-                virtualCameraNoise.m_AmplitudeGain = 0f;
-                shakeElapsedTime = 0f;
-            }
+            transform.localPosition = new Vector3(x, y, originalPosition.z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null; //Wait until next frame 
         }
-    }
 
-    public void setDuration()
-    {
-        shakeElapsedTime = shakeDuration;
+        transform.localPosition = originalPosition;
     }
 }

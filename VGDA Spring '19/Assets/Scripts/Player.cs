@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +12,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashSpeed = 3f;
     [SerializeField] private float dashDuration = 0.4f;
 
+    [Header("Camera Shake")]
+    public float shakeMagnitude= .4f;
+    public float shakeRoughness = 4f;
+    public float fadeInTime = .1f;
+    public float fadeOutTime = 1f;
+
     private ScrollingBackdrop[] backgroundSpeed;
 
-    private CameraShake cameraShake;
+   // private CameraShake cameraShake;
     private Rigidbody2D rb2d;
     private bool isDead = false;
     private bool isSmashing = false;
@@ -27,7 +34,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        cameraShake = GetComponent<CameraShake>();
+        //cameraShake = GetComponent<CameraShake>();
 
         backgroundSpeed = FindObjectsOfType<ScrollingBackdrop>();
     }
@@ -109,7 +116,7 @@ public class Player : MonoBehaviour
             if (isSmashing)
             {
                 //Add camera shake
-                cameraShake.setDuration();
+                CameraShaker.Instance.ShakeOnce(shakeMagnitude, shakeRoughness, fadeInTime, fadeOutTime);
             }
 
             //Checks to see if play is on the ground
