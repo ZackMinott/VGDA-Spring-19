@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ScrollingBackdrop : MonoBehaviour
 {
+    public GameObject[] levelFramesPark;
+    public GameObject[] levelFramesCity;
+    public GameObject[] levelFramesJunkyard;
 
     public float speed; //speed of the object
     public bool startOnScreen; //whether it starts on the screen
     public int switchTime; //number of times the background should pass before switching
     public List<Sprite> backgroundImages; //list of images to change between
+    //GameSession gameSesh;
+
     private float sizeX; //size of the image
     private float cameraBound; //rightmost position the camera can see
     private int timesPassed; //number of times tihs background has been seen consecutively
@@ -37,7 +42,7 @@ public class ScrollingBackdrop : MonoBehaviour
         if (timesPassed >= switchTime)
         {
             listLocation++;
-            if (listLocation > backgroundImages.Count)
+            if (listLocation == backgroundImages.Count)
             {
                 listLocation = 0;
             }
@@ -51,6 +56,36 @@ public class ScrollingBackdrop : MonoBehaviour
             timesPassed++;
         }
         transform.Translate(new Vector3(-1 * speed * Time.deltaTime, 0));
+    }
+
+    private void LevelGeneration()
+    {
+        int frameSelect = 0;
+        GameObject generated = null;
+
+        Object.Destroy(transform.GetChild(0).gameObject);
+
+        switch (listLocation)
+        {
+            case 0:
+                frameSelect = Random.Range(0, levelFramesPark.Length - 1);
+                generated = Instantiate(levelFramesPark[frameSelect]);
+                generated.transform.parent = gameObject.transform;
+                break;
+            case 1:
+                frameSelect = Random.Range(0, levelFramesCity.Length - 1);
+                generated = Instantiate(levelFramesCity[frameSelect]);
+                generated.transform.parent = gameObject.transform;
+                break;
+            case 2:
+                frameSelect = Random.Range(0, levelFramesJunkyard.Length - 1);
+                generated = Instantiate(levelFramesJunkyard[frameSelect]);
+                generated.transform.parent = gameObject.transform;
+                break;
+            default:
+                frameSelect = 0;
+                break;
+        }
     }
 
 }
