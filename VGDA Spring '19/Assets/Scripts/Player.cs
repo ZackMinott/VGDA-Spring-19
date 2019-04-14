@@ -132,6 +132,13 @@ public class Player : MonoBehaviour
 
     }
 
+
+    /******************
+     *POWER UP MANAGER
+     *****************/
+
+
+
     //activates when shield is picked up
     public void shieldPickup()
     {
@@ -159,6 +166,15 @@ public class Player : MonoBehaviour
     public void timeSlowPickup()
     {
 
+    }
+
+    //TODO: 
+    IEnumerator timeSlow()
+    {
+        //SET TIME SLOW HERE, find out how to slow down the game in update
+        //Decrement time based on Time.deltaTime
+
+        yield return new WaitForSeconds(5f);
     }
 
     void PlayerDeath()

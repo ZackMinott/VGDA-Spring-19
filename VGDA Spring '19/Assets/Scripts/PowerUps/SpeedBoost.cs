@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class SpeedBoost : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject pickupEffect;
+    [SerializeField] private GameObject speedPrefab;
+
+    private Player playerMain;
+
+    void onTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            Pickup(other);
+        }
+
+        playerMain = FindObjectOfType<Player>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void Pickup(Collider2D player)
     {
+        //Might not need 
+        Instantiate(pickupEffect, transform.position, transform.rotation);
+
+        //TODO: Call the SpeedBoost Function inside Player
+        //Increase Background speed by a large amount for a short duration, use coroutine 
+
         
+
+        Destroy(gameObject);
     }
+
 }

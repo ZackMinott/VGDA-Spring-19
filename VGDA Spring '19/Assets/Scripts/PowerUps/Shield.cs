@@ -9,6 +9,16 @@ public class Shield : MonoBehaviour
 
     private Player playerMain;
 
+    void Update()
+    {
+        //TODO:
+        //Ensure this gameObject is instantiated through the frame generation script
+        //Create booleans to distinguish if the Shield is on the screen
+        //Clamp the power up to keep the position of the object within bounds of the screen
+        //If outside of bounds switch direction 
+
+    }
+
     void onTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -33,6 +43,7 @@ public class Shield : MonoBehaviour
 
         Destroy(gameObject);
     }
+
 
     
 }
