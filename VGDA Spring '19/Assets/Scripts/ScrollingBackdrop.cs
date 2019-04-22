@@ -15,7 +15,7 @@ public class ScrollingBackdrop : MonoBehaviour
     //GameSession gameSesh;
 
     private float sizeX; //size of the image
-    private float cameraBound; //rightmost position the camera can see
+    private float cameraBound; //rightmost position the camera can see\
     private int timesPassed; //number of times tihs background has been seen consecutively
     private int listLocation; //Location in the list of images
 
@@ -28,17 +28,18 @@ public class ScrollingBackdrop : MonoBehaviour
 
         if (startOnScreen)
         {
-            transform.position = new Vector3(0, transform.localScale.y, transform.position.z);
+            transform.position = new Vector3(-1 * cameraBound + sizeX * transform.localScale.x / 2, transform.localScale.y, transform.position.z);
         }
         else
         {
-            transform.position = new Vector3((sizeX * transform.localScale.x / 2 + cameraBound), transform.localScale.y, transform.position.z);
+            transform.position = new Vector3((-1 * cameraBound + sizeX * transform.localScale.x * 1.5f), transform.localScale.y, transform.position.z);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(new Vector3(-1 * speed * Time.deltaTime, 0));
         if (timesPassed >= switchTime)
         {
             listLocation++;
@@ -52,10 +53,10 @@ public class ScrollingBackdrop : MonoBehaviour
         }
         if (transform.position.x <= ((sizeX * transform.localScale.x / 2 + cameraBound) * -1 + (speed / 30)))
         {
-            transform.position = new Vector3((sizeX * transform.localScale.x / 2 + cameraBound), transform.localScale.y, transform.position.z);
+            transform.position = new Vector3((-1 * cameraBound + sizeX * transform.localScale.x * 1.5f), transform.localScale.y, transform.position.z);
             timesPassed++;
         }
-        transform.Translate(new Vector3(-1 * speed * Time.deltaTime, 0));
+
     }
 
     private void LevelGeneration()
