@@ -28,18 +28,18 @@ public class ScrollingBackdrop : MonoBehaviour
 
         if (startOnScreen)
         {
-            transform.position = new Vector3(-1 * cameraBound + sizeX * transform.localScale.x / 2, transform.localScale.y, transform.position.z);
+            transform.position = new Vector3(-1 * cameraBound + sizeX * transform.localScale.x / 2, 0, transform.position.z);
         }
         else
         {
-            transform.position = new Vector3((-1 * cameraBound + sizeX * transform.localScale.x * 1.5f), transform.localScale.y, transform.position.z);
+            transform.position = new Vector3((-1 * cameraBound + sizeX * transform.localScale.x * 1.5f), 0, transform.position.z);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(-1 * speed * Time.deltaTime, 0));
+        transform.Translate(new Vector3(-1 * speed * Time.fixedDeltaTime, 0));
         if (timesPassed >= switchTime)
         {
             listLocation++;
@@ -53,10 +53,10 @@ public class ScrollingBackdrop : MonoBehaviour
         }
         if (transform.position.x <= ((sizeX * transform.localScale.x / 2 + cameraBound) * -1 + (speed / 30)))
         {
-            transform.position = new Vector3((-1 * cameraBound + sizeX * transform.localScale.x * 1.5f), transform.localScale.y, transform.position.z);
+            transform.position = new Vector3(-1 * cameraBound + sizeX * transform.localScale.x * 1.5f, 0, transform.position.z);
             timesPassed++;
-        }
 
+        }
     }
 
     private void LevelGeneration()
