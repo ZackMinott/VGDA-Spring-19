@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
    // private CameraShake cameraShake;
     private Rigidbody2D rb2d;
+
+    //BOOLEANS
     private bool isDead = false;
     private bool isSmashing = false;
     private bool inAir = false;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
 
     //Power Ups
     [NonSerialized] public bool shieldOn;
+    [NonSerialized] public bool speedBoostOn;
 
     // Start is called before the first frame update
     void Start()
@@ -105,11 +108,11 @@ public class Player : MonoBehaviour
     //TODO: Instantiate Particle effect on ground hit
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "Floor")
-        {
-            shieldPickup();
-            PlayerDeath();
-        }
+        //if (other.gameObject.tag != "Floor")
+        //{
+        //    shieldPickup();
+        //    PlayerDeath();
+        //}
 
         if (other.gameObject.tag == "Floor")
         {
@@ -129,7 +132,21 @@ public class Player : MonoBehaviour
     //TODO: Trigger Power Up Effects
     void onTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("Shield"))
+        {
+            shieldPickup();
+        } else if (other.CompareTag("SpeedBoost"))
+        {
 
+        }
+        else if(other.CompareTag("TimeSlow"))
+        {
+            
+        }
+        else
+        {
+            PlayerDeath();
+        }
     }
 
 
@@ -159,7 +176,12 @@ public class Player : MonoBehaviour
 
     public void boostPickup()
     {
-
+        if (speedBoostOn)
+        {
+            Destroy(FindObjectOfType<SpeedBoost>());
+            isInvulnerable(3f);
+            speedBoostOn = false;
+        }
     }
 
     //may or may not need
@@ -180,8 +202,11 @@ public class Player : MonoBehaviour
     void PlayerDeath()
     {
         //Not final
-        if(canDie)
+        if (canDie)
+        {
             isDead = true;
+        }
+            
     }
 
 
