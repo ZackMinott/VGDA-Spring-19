@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TireScript : MonoBehaviour
+public class TireEnemy : MonoBehaviour
 {
     public float jumpSpeed;
     public float endPoint;
@@ -31,13 +31,14 @@ public class TireScript : MonoBehaviour
         }
         else if (transform.localPosition.y < starty)
         {
+            transform.localPosition = new Vector2(transform.localPosition.x, starty);
             //rigid.velocity = new Vector2(0, rigid.velocity.y + ((0.5f * rigid.velocity.y + jumpSpeed) * Time.deltaTime));
             endy = starty + Random.Range(1f, endPoint);
             upTurn = true;
         }
         if (upTurn)
         {
-            rigid.velocity = new Vector2(0, rigid.velocity.y + (2 * jumpSpeed * Time.deltaTime));
+            rigid.velocity = new Vector2(0, jumpSpeed);
         }
         rigid.velocity = new Vector2(0, Mathf.Clamp(rigid.velocity.y, -clampSpeed, clampSpeed));
     }
